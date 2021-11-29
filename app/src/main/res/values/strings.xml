@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">IndividualLessons</string>
     <string name="button_activity_2">Активити 2</string>
-    <string name="click">Нажать</string>
+    <string name="increment">Прибавить(+)</string>
+    <string name="decrement">Убавить (-)</string>
     <string name="back">Назад</string>
     <string name="result">Результат</string>
     <string name="activity_1">Активити 1</string>
