@@ -26,7 +26,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    dataBinding{
+        enabled true
+    }
+
     buildFeatures{ //приведение к стандарту (для названия имен id в коде). Автоматизация.
+//        dataBinding true
         viewBinding true
     }
 }
