@@ -4,68 +4,76 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.individuallessons.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "@@@MainActivity";
 
-    private Button buttonActivity = null;
+    //    private Button buttonActivity = null;
     private final TextView counterTextView = null;
     private final Counter counter = null;
 
-//    private ActivityMainBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
+    private ActivityMainBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
-//        binding = ActivityMainBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
+        binding = ActivityMainBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
 //        binding= DataBindingUtil.setContentView ( this, R.layout.activity_main );
-        setContentView ( R.layout.activity_main );
+        setContentView ( binding.getRoot () );
         Log.d ( TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
-        buttonActivity = findViewById ( R.id.button_activity2 );
-
-        findViewById ( R.id.button_increment ).setOnClickListener ( v -> {
-            Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
+//        buttonActivity = findViewById ( R.id.button_activity2 );
+//
+//        findViewById ( R.id.button_increment ).setOnClickListener ( v -> {
+//            Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
 //            counter.increment ();
 //            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
-        } );
-
-        findViewById ( R.id.button_decrement ).setOnClickListener ( v -> {
-            Toast.makeText ( this, R.string.decrement, Toast.LENGTH_SHORT ).show ();
-//            counter.decrement ();
-//            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
-        } );
-
-
-        buttonActivity.setOnClickListener ( v -> {
-            Log.d ( TAG, "MainActivity -> SecondActivity" );
-            Toast.makeText ( this, R.string.button_activity_2, Toast.LENGTH_SHORT ).show ();
-
-            Intent intent = new Intent ( MainActivity.this, SecondActivity.class );
-            startActivity ( intent );
-        } );
-
-//        binding.buttonClick.setOnClickListener ( v -> {
-//            Toast.makeText ( this, R.string.click, Toast.LENGTH_SHORT ).show ();
-//            //todo
 //        } );
 //
-//        binding.buttonActivity2.setOnClickListener ( v -> {
+//        findViewById ( R.id.button_decrement ).setOnClickListener ( v -> {
+//            Toast.makeText ( this, R.string.decrement, Toast.LENGTH_SHORT ).show ();
+//            counter.decrement ();
+//            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
+//        } );
+//
+//
+//        buttonActivity.setOnClickListener ( v -> {
 //            Log.d ( TAG, "MainActivity -> SecondActivity" );
 //            Toast.makeText ( this, R.string.button_activity_2, Toast.LENGTH_SHORT ).show ();
 //
 //            Intent intent = new Intent ( MainActivity.this, SecondActivity.class );
 //            startActivity ( intent );
 //        } );
+
+        binding.buttonIncrement.setOnClickListener ( v -> {
+            Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
+            counter.increment ();
+            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
+        } );
+
+        binding.buttonDecrement.setOnClickListener ( v -> {
+            Toast.makeText ( this, R.string.decrement, Toast.LENGTH_SHORT ).show ();
+            counter.decrement ();
+            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
+        } );
+
+        binding.buttonActivity2.setOnClickListener ( v -> {
+            Log.d ( TAG, "MainActivity -> SecondActivity" );
+            Toast.makeText ( this, R.string.button_activity_2, Toast.LENGTH_SHORT ).show ();
+
+            Intent intent = new Intent ( MainActivity.this, SecondActivity.class );
+            startActivity ( intent );
+        } );
     }
 
     @Override

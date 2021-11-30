@@ -18,7 +18,8 @@ public class SecondActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
         binding = ActivitySecondBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
-        setContentView ( R.layout.activity_second );
+        setContentView ( binding.getRoot () );
+//        setContentView ( R.layout.activity_second );
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
         binding.buttonBack.setOnClickListener ( v -> {
