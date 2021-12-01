@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
     private int counter = 0;
 
+    public SharedPreferences preferences = null;
+
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
         setContentView ( binding.getRoot () );//не забыть дать Root права
         Log.d ( TAG, "onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
+
+        preferences = getSharedPreferences ( ACTIVITY_PREFERENCES_KEY, MODE_PRIVATE );
+        counter = preferences.getInt ( COUNTER_KEY, 0 );
+        updateCounterView ();
 
         binding.buttonIncrement.setOnClickListener ( v -> {
             Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
@@ -88,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState ( savedInstanceState );
         if (savedInstanceState != null && savedInstanceState.containsKey ( COUNTER_KEY )) {
             counter = savedInstanceState.getInt ( COUNTER_KEY );
+        } else {
+            counter = preferences.getInt ( COUNTER_KEY, 0 );
         }
         updateCounterView ();
     }
