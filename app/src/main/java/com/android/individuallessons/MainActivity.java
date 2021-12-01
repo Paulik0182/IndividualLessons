@@ -15,7 +15,9 @@ import com.android.individuallessons.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String COUNTER_KEY = "counter_key";
     private static final String TAG = "@@@MainActivity";
+
     private final TextView counterTextView = null;
 
     private ActivityMainBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         } );
     }
 
-    private void updateCounterView() {//  создали функцию которую будем вызывать при обработке кнопки и запуске активити
+    private void updateCounterView() {//  функция. кладем значение в TextView
         binding.counterTextView.setText ( String.valueOf ( counter ) );
     }
 
@@ -73,9 +75,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        //todo
-
         super.onSaveInstanceState ( outState );
+        outState.putInt ( "COUNTER_KEY", counter );
         Log.d ( TAG, "onSaveInstanceState()" );
     }
 
