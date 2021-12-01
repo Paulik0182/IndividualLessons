@@ -2,6 +2,7 @@ package com.android.individuallessons;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.android.individuallessons.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     public static final String COUNTER_KEY = "counter_key";
+    public static final String ACTIVITY_PREFERENCES_KEY = "activity_preferences_key";
     private static final String TAG = "@@@MainActivity";
 
     private final TextView counterTextView = null;
@@ -92,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        //todo
-
+        SharedPreferences.Editor editor = getSharedPreferences ( ACTIVITY_PREFERENCES_KEY, MODE_PRIVATE ).edit ();
+        editor.putInt ( COUNTER_KEY, counter );
+        editor.apply ();
         super.onStop ();
         Log.d ( TAG, "onStop() called" );
     }
