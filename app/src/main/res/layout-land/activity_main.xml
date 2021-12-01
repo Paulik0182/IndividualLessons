@@ -12,6 +12,7 @@
         android:id="@+id/counter_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:textSize="@dimen/text_result_view"
         app:layout_constraintBottom_toTopOf="@id/button_increment"
         app:layout_constraintLeft_toLeftOf="parent"
