@@ -12,14 +12,13 @@ public class SecondActivity extends AppCompatActivity {
 
     private static final String TAG = "@@@SecondActivity";
 
-    private ActivitySecondBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
+    private ActivitySecondBinding binding = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate ( savedInstanceState );
         binding = ActivitySecondBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
         setContentView ( binding.getRoot () );
-//        setContentView ( R.layout.activity_second );
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
         binding.buttonBack.setOnClickListener ( v -> {
