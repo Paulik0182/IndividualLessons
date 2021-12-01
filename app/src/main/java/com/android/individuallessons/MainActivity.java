@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
     //    private Button buttonActivity = null;
     private final TextView counterTextView = null;
-    private final Counter counter = null;
+    private int counter = 0;
+//    private final Counter counter = null;
 
     private ActivityMainBinding binding = null;// переменная определяющая все элементы в Activity через класс ActivityMainBinding
 
@@ -57,14 +58,18 @@ public class MainActivity extends AppCompatActivity {
 
         binding.buttonIncrement.setOnClickListener ( v -> {
             Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
-            counter.increment ();
-            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
+            counter++;
+            updateCounterView ();
+//            counter.increment ();
+//            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
         } );
 
         binding.buttonDecrement.setOnClickListener ( v -> {
             Toast.makeText ( this, R.string.decrement, Toast.LENGTH_SHORT ).show ();
-            counter.decrement ();
-            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
+            counter--;
+            updateCounterView ();
+//            counter.decrement ();
+//            counterTextView.setText ( String.format ( "Нажали %d раз", counter.getCounter () ) );
         } );
 
         binding.buttonActivity2.setOnClickListener ( v -> {
@@ -74,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent ( MainActivity.this, SecondActivity.class );
             startActivity ( intent );
         } );
+    }
+
+    private void updateCounterView() {//  создали функцию которую будем вызывать при обработке кнопки и запуске активити
+        binding.counterTextView.setText ( String.valueOf ( counter ) );
     }
 
     @Override
