@@ -76,14 +76,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState ( outState );
-        outState.putInt ( "COUNTER_KEY", counter );
+        outState.putInt ( "counter_key", counter );
         Log.d ( TAG, "onSaveInstanceState()" );
     }
 
     @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState ( savedInstanceState );
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
         Log.d ( TAG, "onRestoreInstanceState()" );
+        super.onRestoreInstanceState ( savedInstanceState );
+        if (savedInstanceState != null && savedInstanceState.containsKey ( COUNTER_KEY )) {
+            counter = savedInstanceState.getInt ( COUNTER_KEY );
+        }
+        updateCounterView ();
     }
 
     @Override
