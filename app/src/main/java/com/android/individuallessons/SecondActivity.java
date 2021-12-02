@@ -32,11 +32,27 @@ public class SecondActivity extends AppCompatActivity {
         }
         ((TextView) findViewById ( R.id.second_text_view )).setText ( String.valueOf ( counter ) );
 
+        binding.buttonIncrement.setOnClickListener ( v -> {
+            Toast.makeText ( this, R.string.increment, Toast.LENGTH_SHORT ).show ();
+            counter++;
+            updateCounterViewSecond ();
+        } );
+
+        binding.buttonDecrement.setOnClickListener ( v -> {
+            Toast.makeText ( this, R.string.decrement, Toast.LENGTH_SHORT ).show ();
+            counter--;
+            updateCounterViewSecond ();
+        } );
+
         binding.buttonBack.setOnClickListener ( v -> {
             finish ();
             Toast.makeText ( this, R.string.activity_1, Toast.LENGTH_SHORT ).show ();
 
         } );
+    }
+
+    private void updateCounterViewSecond() {//  функция. кладем значение в TextView
+        binding.secondTextView.setText ( String.valueOf ( counter ) );
     }
 
     @Override
