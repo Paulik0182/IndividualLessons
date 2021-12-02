@@ -25,7 +25,11 @@ public class SecondActivity extends AppCompatActivity {
         setContentView ( binding.getRoot () );
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
-        counter = getIntent ().getExtras ().getInt ( MainActivity.COUNTER_KEY );
+        if (MainActivity.COUNTER_KEY != null) {
+            counter = getIntent ().getExtras ().getInt ( MainActivity.COUNTER_KEY );
+        } else {
+            counter = 10;
+        }
         ((TextView) findViewById ( R.id.second_text_view )).setText ( String.valueOf ( counter ) );
 
         binding.buttonBack.setOnClickListener ( v -> {
