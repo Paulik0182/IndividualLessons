@@ -22,6 +22,7 @@ public class SecondActivity extends AppCompatActivity {
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
         binding.buttonBack.setOnClickListener ( v -> {
+            finish ();
             Toast.makeText ( this, R.string.activity_1, Toast.LENGTH_SHORT ).show ();
 
         } );
