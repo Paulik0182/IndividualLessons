@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d ( TAG, "MainActivity -> SecondActivity" );
             Toast.makeText ( this, R.string.button_activity_2, Toast.LENGTH_SHORT ).show ();
             Intent intent = new Intent ( MainActivity.this, SecondActivity.class );
+            intent.putExtra ( COUNTER_KEY, counter );
             startActivity ( intent );
         } );
     }

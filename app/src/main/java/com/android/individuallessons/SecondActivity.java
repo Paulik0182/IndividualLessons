@@ -2,6 +2,8 @@ package com.android.individuallessons;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ public class SecondActivity extends AppCompatActivity {
     private static final String TAG = "@@@SecondActivity";
 
     private ActivitySecondBinding binding = null;
+    private final EditText editText = null;
+    private int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,9 @@ public class SecondActivity extends AppCompatActivity {
         binding = ActivitySecondBinding.inflate ( getLayoutInflater () ); // наполняем binding, обращаемся к методу который из Activity берет макет
         setContentView ( binding.getRoot () );
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
+
+        counter = getIntent ().getExtras ().getInt ( MainActivity.COUNTER_KEY );
+        ((TextView) findViewById ( R.id.second_text_view )).setText ( String.valueOf ( counter ) );
 
         binding.buttonBack.setOnClickListener ( v -> {
             finish ();
