@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_activity_2">Активити 2</string>
+    <string name="increment">Plus(+)</string>
+    <string name="decrement">Убавить (-)</string>
+    <string name="back">Back</string>
+    <string name="result">Result</string>
+    <string name="activity_1">Activity 1</string>
+</resources>
