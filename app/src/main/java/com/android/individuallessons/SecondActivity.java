@@ -1,11 +1,14 @@
 package com.android.individuallessons;
 
+import static com.android.individuallessons.MainActivity.COUNTER_KEY;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.individuallessons.databinding.ActivitySecondBinding;
@@ -13,9 +16,10 @@ import com.android.individuallessons.databinding.ActivitySecondBinding;
 public class SecondActivity extends AppCompatActivity {
 
     private static final String TAG = "@@@SecondActivity";
+    public static final String COUNTER_SECOND_KEY = "counter_second_key";
+
 
     private ActivitySecondBinding binding = null;
-    private final EditText editText = null;
     private int counter = 0;
 
     @Override
@@ -25,8 +29,8 @@ public class SecondActivity extends AppCompatActivity {
         setContentView ( binding.getRoot () );
         Log.d ( TAG, "SecondActivity onCreate() called with: savedInstanceState = [" + savedInstanceState + "]" );
 
-        if (MainActivity.COUNTER_KEY != null) {
-            counter = getIntent ().getExtras ().getInt ( MainActivity.COUNTER_KEY );
+        if (COUNTER_KEY != null) {
+            counter = getIntent ().getExtras ().getInt ( COUNTER_KEY );
         } else {
             counter = 10;
         }
@@ -45,14 +49,29 @@ public class SecondActivity extends AppCompatActivity {
         } );
 
         binding.buttonBack.setOnClickListener ( v -> {
-            finish ();
             Toast.makeText ( this, R.string.activity_1, Toast.LENGTH_SHORT ).show ();
-
+            Intent intent = new Intent ( SecondActivity.this, MainActivity.class );
+            intent.putExtra ( COUNTER_KEY, counter );
+            startActivity ( intent );
+            finish ();
         } );
     }
 
     private void updateCounterViewSecond() {//  функция. кладем значение в TextView
         binding.secondTextView.setText ( String.valueOf ( counter ) );
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState ( outState );
+        outState.putInt ( COUNTER_KEY, counter );
+        Log.d ( TAG, "Second_onSaveInstanceState()" );
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        Log.d ( TAG, "Second_onRestoreInstanceState()" );
+        super.onRestoreInstanceState ( savedInstanceState );
     }
 
     @Override
